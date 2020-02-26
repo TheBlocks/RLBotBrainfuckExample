@@ -1,4 +1,4 @@
-[This example bot only chases the ball, however, the possibilities are endless with brainfuck.]
+This example bot only chases the ball however the possibilities are endless with brainfuck
 
 Packet inputs
 cell 0: bot location x
@@ -200,9 +200,16 @@ C will be 1 if A is positive / 0 if A is negative
 Controller outputs
 cell 6: throttle
 cell 7: steer
-Outputs must be in this order: steer, throttle, pitch, yaw, roll, jump, boost, handbrake
 
-<<<<< <                 go to cell 5
-[-]                     empty cell 5 for empty controls
->                       go to cell 6
->.<.<....>>>.>.         output controller values
+Starting from output 0 controls must be in this order:
+steer throttle pitch yaw roll jump boost handbrake
+
+We need to move the outputs from out temporary storage into
+the right cells for the outputs
+
+<<<<            go to cell 6 (steer)
+.               output steer
+<               go to cell 7 (throttle)
+.               output throttle
+[-]             empty cell for the next outputs
+......          output empty values for the rest of the controls

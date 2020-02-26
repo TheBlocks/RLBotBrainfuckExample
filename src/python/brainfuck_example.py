@@ -1,5 +1,6 @@
 import ctypes
 from typing import List
+import pathlib
 
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState, BOT_CONFIG_AGENT_HEADER
 from rlbot.parsing.custom_config import ConfigHeader, ConfigObject
@@ -12,7 +13,8 @@ class BrainfuckExample(BaseAgent):
     def __init__(self, name, team, index):
         super().__init__(name, team, index)
 
-        with open("src/brainfuck/bot.bf", "r") as f:
+        bot_source = pathlib.Path(__file__).absolute().parent.parent / "brainfuck" / "bot.bf"
+        with open(bot_source, "r") as f:
             source: str = f.read()
 
         ins_ret: LengthInstructionArray = get_instructions(ctypes.create_string_buffer(bytes(source, "ASCII")))

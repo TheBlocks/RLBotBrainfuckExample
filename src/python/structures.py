@@ -1,4 +1,5 @@
 import ctypes
+import pathlib
 
 
 class Instruction(ctypes.Structure):
@@ -22,7 +23,8 @@ class LengthCharArray(ctypes.Structure):
     ]
 
 
-dll = ctypes.WinDLL(r"src/python/interpreter.dll")
+interpreter_path = pathlib.Path(__file__).parent.absolute() / "interpreter.dll"
+dll = ctypes.WinDLL(str(interpreter_path))
 
 get_instructions = dll.get_instructions
 get_instructions.argtypes = [ctypes.c_char_p]
