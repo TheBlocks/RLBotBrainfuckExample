@@ -204,8 +204,8 @@ cell 7: steer
 Starting from output 0 controls must be in this order:
 steer throttle pitch yaw roll jump boost handbrake
 
-We need to move the outputs from out temporary storage into
-the right cells for the outputs
+We need to move the outputs from our "Controller outputs"
+section into the right cells for the outputs
 
 <<<<            go to cell 6 (steer)
 .               output steer
